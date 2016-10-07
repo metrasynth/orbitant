@@ -57,8 +57,9 @@ class Monitor(object):
             return 60. / ((self.queue[-1] - self.queue[0]) / len(self.queue) * self.tpb)
 
     def receive_message(self, message):
-        self.queue.append(time())
-        bpm = int(self.current_bpm or 0)
-        if bpm and bpm != self.last_bpm:
-            logging.debug('bpm=%r', bpm)
-            self.last_bpm = bpm
+        if message.type == 'clock':
+            self.queue.append(time())
+            bpm = int(self.current_bpm or 0)
+            if bpm and bpm != self.last_bpm:
+                logging.debug('bpm=%r', bpm)
+                self.last_bpm = bpm
