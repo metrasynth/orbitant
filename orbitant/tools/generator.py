@@ -2,7 +2,7 @@ import logging
 
 import begin
 
-from orbitant import backend, clock
+from orbitant import backend, generator
 
 
 @begin.start
@@ -14,6 +14,6 @@ def main(bpm: 'Beats per Minute' = 120,
     bpm = int(bpm)
     tpn = int(tpb)
     port = backend.open_output(name=name, virtual=True)
-    gen = clock.Generator(port=port, bpm=bpm, tpb=tpb)
+    gen = generator.Generator(port=port, bpm=bpm, tpb=tpb)
     logging.info('Starting clock; press ^C to exit')
     gen.start()
