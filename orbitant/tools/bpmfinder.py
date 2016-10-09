@@ -7,16 +7,14 @@ from orbitant import backend, bpmfinder
 
 @begin.start
 @begin.logging
-def main(min_ticks: 'Ticks to accumulate before calculating' = 24,
-         max_ticks: 'Maximum ticks to use when calculating' = 512,
-         tpb: 'Ticks per beat' = 24,
+def main(min_samples: 'Timing samples to accumulate before calculating' = 16,
+         max_samples: 'Maximum timing samples to use when calculating' = 128,
          name: 'MIDI port name' = 'Orbitant Generator'):
     logging.info('Starting monitor; press ^C to exit')
-    bpm_finder = bpmfinder.BpmFinder(
-        min_ticks=int(min_ticks),
-        max_ticks=int(max_ticks),
-        tpb=int(tpb),
-    )
     with backend.open_input(name=name) as port:
-        for message in port:
-            bpm_finder.receive_message(message)
+        bpm_finder = bpmfinder.BpmFinder(
+            port=port,
+            min_samples=int(min_samples),
+            max_samples=int(max_samples),
+        )
+        bpm_finder.run()
