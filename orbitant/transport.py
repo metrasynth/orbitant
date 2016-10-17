@@ -2,6 +2,8 @@ import mido
 
 
 CLOCK = mido.Message('clock')
+START = mido.Message('start')
+STOP = mido.Message('stop')
 
 
 TICKS_32ND = 96 // 32
