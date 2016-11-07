@@ -1,7 +1,5 @@
-Metrasynth Orbitant
-===================
-
-Contents:
+Contents
+========
 
 ..  toctree::
     :maxdepth: 2
