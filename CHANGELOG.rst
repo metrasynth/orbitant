@@ -1,7 +1,7 @@
 Changelog
 =========
 
-0.1.0 - Under development
--------------------------
+0.1.0 (not yet released)
+------------------------
 
 -   Initial release.
