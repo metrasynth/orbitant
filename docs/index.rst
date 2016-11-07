@@ -6,7 +6,9 @@ Contents:
 ..  toctree::
     :maxdepth: 2
 
+    contributing
     changelog
+    authors
 
 
 Indices and tables
