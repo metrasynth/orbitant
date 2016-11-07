@@ -13,9 +13,10 @@
 # All configuration values have a default; values that are commented out
 # serve to show the default.
 
-import sys
 import os
+import sys
 
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 import orbitant
 
 # If extensions (or modules to document with autodoc) are in another directory,
