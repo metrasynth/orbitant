@@ -1,11 +1,32 @@
 language: python
-python:
-  - "3.5"
-  - "3.5-dev"
-  - "nightly"
+python: '3.5'
+env:
+  global:
+    - LD_PRELOAD=/lib/x86_64-linux-gnu/libSegFault.so
+    - SEGFAULT_SIGNALS=all
+  matrix:
+    - TOXENV=check
+    - TOXENV=docs
+    - TOXENV=py35
+before_install:
+  - sudo apt-get -qq update
+  - sudo apt-get -y install libsdl1.2-dev
+  - python --version
+  - uname -a
+  - lsb_release -a
 install:
-  - "sudo apt-get -qq update"
-  - "sudo apt-get -y install libsdl1.2-dev"
-  - "pip install -r requirements/tests.txt"
-  - "pip install ."
-script: py.test
+  - pip install tox
+  - virtualenv --version
+  - easy_install --version
+  - pip --version
+  - tox --version
+script:
+  - tox -v
+after_failure:
+  - more .tox/log/* | cat
+  - more .tox/*/log/* | cat
+before_cache:
+  - rm -rf $HOME/.cache/pip/log
+cache:
+  directories:
+    - $HOME/.cache/pip
