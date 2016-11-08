@@ -17,12 +17,15 @@ TICKS_WHOLE = 96 // 1
 
 
 def beat_properties(ticks):
+
     @property
     def beat(self):
         return self.tick // ticks
+
     @property
     def beat_tick(self):
         return self.tick % ticks
+
     return beat, beat_tick
 
 
@@ -106,16 +109,29 @@ class TransportSlave(object):
 
     # Override these in subclasses:
     def on_start(self): pass
+
     def on_stop(self): pass
+
     def on_continue(self): pass
+
     def on_rewind(self): pass
+
     def on_tick(self): pass
+
     def on_midi_beat(self): pass
+
     def on_32nd(self): pass
+
     def on_sextuplet(self): pass
+
     def on_16th(self): pass
+
     def on_triplet(self): pass
+
     def on_8th(self): pass
+
     def on_quarter(self): pass
+
     def on_half(self): pass
+
     def on_whole(self): pass
